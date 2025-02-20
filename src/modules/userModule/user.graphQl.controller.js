@@ -10,7 +10,7 @@ export const borrowBook = async(_,args)=>{
     const{ authorization , bookId , dueDate} = args;
     const user = await auth(authorization);
     const book = await bookModel.findOne({
-        _id:bookId , isDeleted : false
+        _id:bookId , isDeleted : false 
     })
     if(!book) 
         throw new Error('Book Not Found' , {cause:StatusCodes.NOT_FOUND});

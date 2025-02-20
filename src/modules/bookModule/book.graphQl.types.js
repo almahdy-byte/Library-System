@@ -1,4 +1,4 @@
-import { GraphQLID, GraphQLInt, GraphQLObjectType, GraphQLString } from "graphql";
+import { GraphQLID, GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLString } from "graphql";
 
 export const BookType = new GraphQLObjectType({
     name:'BookType',
@@ -38,5 +38,4 @@ export const BorrowedBookType = new GraphQLObjectType({
         }
     }
 })
-
 

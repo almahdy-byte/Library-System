@@ -1,5 +1,5 @@
-import { BookType } from "./book.graphQl.types.js";
-import { GraphQLInt, GraphQLString } from "graphql";
+import {  BookType } from "./book.graphQl.types.js";
+import { GraphQLID, GraphQLInt, GraphQLList, GraphQLString } from "graphql";
 import * as bookServices from './book.graphQl.controller.js'
 
 
@@ -25,4 +25,26 @@ export const bookMutation = {
         },
         resolve:bookServices.addBook
     }
+}
+
+
+export const bookQuery = {
+    getAllBooks:{
+        type:new GraphQLList(BookType),
+        resolve:bookServices.getAllBooks
+    },
+    getBookById:{
+        type:BookType,
+        args:{
+            bookId :{
+                type:GraphQLID
+            }
+        },
+        resolve:bookServices.getBookById
+    },
+    getUnreturnedBooks:{
+        type:new GraphQLList(BookType),
+        resolve:bookServices.getUnreturnedBooks
+    },
+    
 }

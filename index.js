@@ -7,7 +7,7 @@ const app = express();
 bootstrap(app , express);
 
 
-app.listen(4444 , ()=>{
-    console.log(`server is running om port 3000`);
+app.listen(process.env.PORT , ()=>{
+    console.log(`server is running successfully `);
     
 })
