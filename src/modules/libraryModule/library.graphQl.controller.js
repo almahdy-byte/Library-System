@@ -1,6 +1,6 @@
 import { GraphQLID, GraphQLList, GraphQLObjectType, GraphQLScalarType, GraphQLString } from "graphql"
 import { libraryModel } from "../../DB/models/library.model.js"
-const booksObj = new GraphQLObjectType({
+export const booksObj = new GraphQLObjectType({
 name:'booksObj',
 fields:{
     title :{

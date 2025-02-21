@@ -1,6 +1,8 @@
-import { GraphQLID, GraphQLInt, GraphQLString } from "graphql";
-import { BorrowedBookType } from "../bookModule/book.graphQl.types.js";
+import { GraphQLID, GraphQLInt, GraphQLList, GraphQLString } from "graphql";
+import { BookType, BorrowedBookType } from "../bookModule/book.graphQl.types.js";
 import * as userServices from './user.graphQl.controller.js'
+import { UserType } from "../authModule/auth.graphQl.types.js";
+import { booksObj } from "../libraryModule/library.graphQl.controller.js";
 
 export const userMutation ={
     borrowBook:{
@@ -45,4 +47,14 @@ export const userMutation ={
         },
         resolve:userServices.markBookAvailable
     }
+}
+
+
+export const userQuery = {
+    getUsers:{
+        // type:new GraphQLList(UserType),
+        type:new GraphQLList(UserType) ,
+        resolve:userServices.getUsers
+    }
+    
 }

@@ -27,14 +27,10 @@ const userSchema = new Schema({
         enum:Object.values(Role),
         default:'user'
     },
-},{toJSON:{
-    virtuals:true
-} , toObject:{
-    virtuals:true
-}})
-userSchema.virtual('BorrowedBooks' , {
-    localField:"_id",
-    foreignField:"userId",
-    ref:'borrowedBook'
-})
+    borrowedBooks:[{
+        type:Types.ObjectId,
+        ref:'Books'
+    }]
+},)
+
 export const userModel = model('Users' , userSchema);

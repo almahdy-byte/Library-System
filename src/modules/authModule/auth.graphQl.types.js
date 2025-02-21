@@ -1,4 +1,6 @@
-import { GraphQLID, GraphQLObjectType, GraphQLString } from "graphql";
+import { GraphQLID, GraphQLList, GraphQLObjectType, GraphQLString } from "graphql";
+import { BookType } from "../bookModule/book.graphQl.types.js";
+import { booksObj } from "../libraryModule/library.graphQl.controller.js";
 
 export const UserType = new GraphQLObjectType({
         name:'UserType',
@@ -20,6 +22,8 @@ export const UserType = new GraphQLObjectType({
             } ,
             role:{
                 type:GraphQLString
+            } , borrowedBooks:{
+                type:new GraphQLList(BookType)
             }
         }
 });

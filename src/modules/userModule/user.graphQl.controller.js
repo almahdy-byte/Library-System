@@ -23,6 +23,10 @@ export const borrowBook = async(_,args)=>{
             dueDate:dueDate ? new Date(dueDate) : Date.now() * 2 * 24 * 60 *60 * 1000
         });
         await book.save()
+    user.borrowedBooks.push({
+        _id : book._id
+    })
+    await user.save()
     return{
         bookId,
         availableCopies : book.availableCopies , 
@@ -57,4 +61,14 @@ export const markBookAvailable =async(_,args)=>{
     book.availableCopies += numOfCopies;
         await book.save()
     return " Book is now available for borrowing"
+}
+
+
+export const getUsers = async(_ , args)=>{
+    const user = await userModel.find({}).populate({
+        path:'borrowedBooks',
+    });
+    console.log(user);
+    
+    return user ;
 }
