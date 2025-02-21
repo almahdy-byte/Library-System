@@ -4,10 +4,13 @@ import { hash } from "../../utils/hash/hash.js";
 import { encrypt } from "../../utils/crypt/encrypt.js";
 import { compare } from "../../utils/hash/compare.js";
 import { createToken, sign } from "../../utils/token/token.js";
+import { validation } from "../../middleWare/validation.middleWare.js";
+import { logInValidation, registerValidation } from "./auth.validation.js";
 
 
 export const register = async(_ , args)=>{
     const {userName , email , password , phone , role} = args;
+    await validation(args , registerValidation);
     const isExist = await userModel.findOne({
         email 
     })
@@ -27,6 +30,7 @@ export const register = async(_ , args)=>{
 
 export const login = async(_,args)=>{
     const{email , password} = args;
+    validation(args , logInValidation)
     const user = await userModel.findOne({
         email
     })

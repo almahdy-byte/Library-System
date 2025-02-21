@@ -1,5 +1,5 @@
 import {  BookType } from "./book.graphQl.types.js";
-import { GraphQLID, GraphQLInt, GraphQLList, GraphQLString } from "graphql";
+import { GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLString } from "graphql";
 import * as bookServices from './book.graphQl.controller.js'
 
 
@@ -21,7 +21,10 @@ export const bookMutation = {
             },
             availableCopies:{
                 type:GraphQLInt
-            } 
+            } ,
+            libraryId :{
+                type : GraphQLID
+            }
         },
         resolve:bookServices.addBook
     }

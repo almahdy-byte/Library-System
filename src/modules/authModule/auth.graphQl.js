@@ -1,4 +1,4 @@
-import { GraphQLString } from "graphql";
+import { GraphQLNonNull, GraphQLString } from "graphql";
 import { LoginType, UserRegisterType } from "./auth.graphQl.types.js";
 import * as authServices from "./auth.graphql.controller.js";
 
@@ -7,16 +7,16 @@ export const authMutation = {
         type:UserRegisterType,
         args:{
                 userName:{
-                    type:GraphQLString
+                    type: new GraphQLNonNull(GraphQLString)
                 },
                 email:{
-                    type:GraphQLString
+                    type: new GraphQLNonNull(GraphQLString)
                 },
                 phone:{
-                    type:GraphQLString
+                    type: new GraphQLNonNull(GraphQLString)
                 },
                 password:{
-                    type:GraphQLString
+                    type: new GraphQLNonNull(GraphQLString)
                 },
                 role:{
                     type:GraphQLString
@@ -28,10 +28,10 @@ export const authMutation = {
         type:LoginType,
         args:{
             email:{
-                type:GraphQLString,
+                type: new GraphQLNonNull(GraphQLString),
             },
             password:{
-                type:GraphQLString,
+                type: new GraphQLNonNull(GraphQLString),
             }
         },
         resolve:authServices.login
